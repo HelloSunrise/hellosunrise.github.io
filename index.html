@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Simple Shopping Cart</title>
+<title>Hello Sunrise</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -10,15 +10,25 @@
 
 <body>
 <div class="jumbotron text-center">
-  <h1>Simple Shopping Cart without Server</h1>
-  <p>Test it out</p> 
+  <h1>Hello Sunrise - 测试版本</h1>
+  <p>大家好，由於疫情關係店面沒有營業。目前是每逢星期一、三、五做預訂外送服務。🚚</p>
+  <p>&nbsp;</p>
+  <p>订购满Rm15免费送货</p>
+  <p>如第一次下訂單，记得附上地址哦</p>
+  <p>&nbsp;</p>
+  <p>可以的话请用银行转账</p>
+  <p>Public Bank</p>
+  <p>xxxxxx</p>
+  <p>xxxxxxxxxx</p>
+  <p>&nbsp;</p>
+  <p>如现钱交易 - 请将现钱放进信封或纸袋，请给整数不方便找零钱，谢谢大家的合作</p>
 </div>
 	
 <div id="app">
 	<div v-if="content=='home'"><!-- Home -->
 		<div id="home-button-tab" class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>测试版本</h2>
+				<h2>Hello Sunrise - 测试版本</h2>
 			</div>
 			<!-- <button id="cart-btn" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Cart ({{cartItems.length}})</button> -->
 			<button id="cart-btn" class="btn btn-primary" @click="changePage('cart')">购物车 ({{cartItems.length}})</button>
