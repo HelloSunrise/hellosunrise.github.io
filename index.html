@@ -18,10 +18,10 @@
 	<div v-if="content=='home'"><!-- Home -->
 		<div id="home-button-tab" class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>Simple Shopping Cart without Server</h2>
+				<h2>测试版本</h2>
 			</div>
 			<!-- <button id="cart-btn" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Cart ({{cartItems.length}})</button> -->
-			<button id="cart-btn" class="btn btn-primary" @click="changePage('cart')">Cart ({{cartItems.length}})</button>
+			<button id="cart-btn" class="btn btn-primary" @click="changePage('cart')">购物车 ({{cartItems.length}})</button>
 		</div>
 
 		<div id="loading" class="text-center d-none">
@@ -39,7 +39,7 @@
 								<img :src="item.product_image_url" :alt="item.title" class="item-image">
 							</figure>
 							<div>
-							<span class="new-circle top-left" v-if="item.is_new == 'Y'">New</span>
+							<span class="new-circle top-left" v-if="item.is_new == 'Y'">新产品</span>
 							<span class="discount-circle top-right" v-if="item.sales_price != ''">{{ Math.round((item.price-item.sales_price)/item.price*100 * Math.pow(10, 0)) / Math.pow(10, 0) }}%</span>
 							</div>
 						</div>
@@ -56,7 +56,7 @@
 							<h3 class="item-name">{{ item.product_title }}</h3>
 							<div class="item-action">
 								<!-- <p class="text-center"><input v-model="item.quantity" type="number" class="form-control" placeholder="Qty" min="1" value="1"/></p> -->
-								<button @click="addToCart(index)" class="btn btn-sm btn-primary icon-cart-text" v-if="typeof item.quantity == 'undefined' || item.quantity == '' || item.quantity == 0">Add to Cart</button>
+								<button @click="addToCart(index)" class="btn btn-sm btn-primary icon-cart-text" v-if="typeof item.quantity == 'undefined' || item.quantity == '' || item.quantity == 0">加入购物车</button>
 								<span class="btn btn-sm btn-primary icon-cart-text" style="cursor:default;" v-else>Added</span>
 							</div>
 						</div>
