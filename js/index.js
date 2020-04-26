@@ -141,13 +141,13 @@ const vm = new Vue({
       this.errors = [];
 
       if (!this.profile.name) {
-        this.errors.push('Name required.');
+        this.errors.push('请填写您的名字。');
       }
       if (!this.profile.whatsapp) {
-        this.errors.push('WhatsApp required.');
+        this.errors.push('需要您的WhatsApp号码');
       }
       if (!this.profile.address) {
-        this.errors.push('Address required.');
+        this.errors.push('请填写地址。');
       }
     },
   },
