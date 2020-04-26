@@ -79,9 +79,9 @@
 	<div v-if="content=='cart'" class="cart"><!-- Cart -->
 		<div class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>Simple Shopping Cart without Server</h2>
+				<h2>Hello Sunrise - 测试版本</h2>
 			</div>
-			<button id="home-btn" class="btn btn-primary" @click="changePage('home')">Home</button>
+			<button id="home-btn" class="btn btn-primary" @click="changePage('home')">返回主页</button>
 		</div>
 
 		<div class="container content">
@@ -97,11 +97,11 @@
 							<div class="text-center"><strong>{{cartItem.product_title}}</strong></div>
 							<div class="text-center"><img :src="cartItem.product_image_url" :alt="cartItem.title" class="item-image"></div>
 						</div>
-						<div class="col-sm-4 text-center">QTY:
+						<div class="col-sm-4 text-center">数量:
 							<input v-model="cartItem.quantity" class="form-control input-qty" type="number" min="1">
 						</div>
-						<div class="col-sm-3 text-center" v-if="cartItem.sales_price != ''">{{cartItem.sales_price  * cartItem.quantity | formatCurrency}}</div>
-						<div class="col-sm-3 text-center" v-else>{{cartItem.price  * cartItem.quantity | formatCurrency}}</div>
+						<div class="col-sm-3 text-center" v-if="cartItem.sales_price != ''">合计:{{cartItem.sales_price  * cartItem.quantity | formatCurrency}}</div>
+						<div class="col-sm-3 text-center" v-else>合计:{{cartItem.price  * cartItem.quantity | formatCurrency}}</div>
 						<div class="col-sm-1 text-center">
 							<button @click="removeFromCart(cartIndex)"><svg class="bi bi-trash" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z"/><path fill-rule="evenodd" d="M14.5 3a1 1 0 01-1 1H13v9a2 2 0 01-2 2H5a2 2 0 01-2-2V4h-.5a1 1 0 01-1-1V2a1 1 0 011-1H6a1 1 0 011-1h2a1 1 0 011 1h3.5a1 1 0 011 1v1zM4.118 4L4 4.059V13a1 1 0 001 1h6a1 1 0 001-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" clip-rule="evenodd"/></svg></button>
 						</div>
@@ -116,7 +116,7 @@
 				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0">
 					<div class="row">
 						<div class="col-sm-4"></div>
-						<div class="col-6 col-sm-4 text-center"><strong>Cart Total</strong></div>
+						<div class="col-6 col-sm-4 text-center"><strong>订单总金额</strong></div>
 						<div class="col-6 col-sm-3 text-center"><strong>{{CartTotal | formatCurrency}}</strong></div>
 						<div class="col-sm-1"></div>
 					</div>
