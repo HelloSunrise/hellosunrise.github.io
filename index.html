@@ -67,7 +67,7 @@
 							<div class="item-action">
 								<!-- <p class="text-center"><input v-model="item.quantity" type="number" class="form-control" placeholder="Qty" min="1" value="1"/></p> -->
 								<button @click="addToCart(index)" class="btn btn-sm btn-primary icon-cart-text" v-if="typeof item.quantity == 'undefined' || item.quantity == '' || item.quantity == 0">加入购物车</button>
-								<span class="btn btn-sm btn-primary icon-cart-text" style="cursor:default;" v-else>Added</span>
+								<span class="btn btn-sm btn-primary icon-cart-text" style="cursor:default;" v-else>已添加到购物车</span>
 							</div>
 						</div>
 					</div>
