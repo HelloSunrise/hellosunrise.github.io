@@ -92,7 +92,7 @@
 							<hr>
 						</div>
 					</div>
-					<div class="row padding-row">
+					<div :id="'p-' + cartItem.id" class="row padding-row">
 						<div class="col-sm-4">
 							<div class="text-center"><strong>{{cartItem.product_title}}</strong></div>
 							<div class="text-center"><img :src="cartItem.product_image_url" :alt="cartItem.title" class="item-image"></div>
