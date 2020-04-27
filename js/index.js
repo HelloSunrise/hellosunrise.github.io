@@ -1,12 +1,12 @@
 function formatNumber(n, c, d, t){
-	var currency = "RM";
-	var c = isNaN(c = Math.abs(c)) ? 2 : c, 
-			d = d === undefined ? '.' : d, 
-			t = t === undefined ? ',' : t, 
-			s = n < 0 ? '-' : '', 
-			i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
-			j = (j = i.length) > 3 ? j % 3 : 0;
-	return currency + " " + s + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
+  var currency = "RM";
+  var c = isNaN(c = Math.abs(c)) ? 2 : c, 
+      d = d === undefined ? '.' : d, 
+      t = t === undefined ? ',' : t, 
+      s = n < 0 ? '-' : '', 
+      i = String(parseInt(n = Math.abs(Number(n) || 0).toFixed(c))), 
+      j = (j = i.length) > 3 ? j % 3 : 0;
+  return currency + " " + s + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
 }
 
 function getFromStorage(item){
@@ -48,13 +48,13 @@ window.onscroll = function() {
 
 // Allow the formatNumber function to be used as a filter
 Vue.filter('formatCurrency', function (value) {
-	return formatNumber(value, 2, '.', ',');
+  return formatNumber(value, 2, '.', ',');
 });
 
-dataURL = "https://script.google.com/macros/s/AKfycbxM-adOujLUNRf1kdfeVLZMDTAkJtHuHWf6k920waMKjr4Wbmo/exec";
+var dataURL = "https://script.google.com/macros/s/AKfycbxM-adOujLUNRf1kdfeVLZMDTAkJtHuHWf6k920waMKjr4Wbmo/exec";
 const vm = new Vue({
   el: '#app',
-	
+  
   data: {
     items : [],
     cartItems: [],
@@ -98,12 +98,12 @@ const vm = new Vue({
       $("#loading").hide();
     });
   },
-	
+  
   methods: {
     changePage(page){
       this.content = page;
     },
-		// Add Items to cart
+    // Add Items to cart
     addToCart(index) {
       itemToAdd = this.items[index];
       this.cartList.push(index);
@@ -122,7 +122,7 @@ const vm = new Vue({
       }
 
       saveToStorage("cartItems", this.cartItems);
-			
+      
     },
     // Remove item by its index
     removeFromCart(cartIndex) {
@@ -138,16 +138,42 @@ const vm = new Vue({
         var clientProfile = {name:this.profile.name,whatsapp:this.profile.whatsapp,address:this.profile.address};
         saveToStorage("profile", clientProfile);
       }
+      var myerrors = [];
+      var orders = [];
       this.errors = [];
 
       if (!this.profile.name) {
-        this.errors.push('请填写您的名字。');
+        myerrors.push('请填写您的名字。');
       }
       if (!this.profile.whatsapp) {
-        this.errors.push('需要您的WhatsApp号码');
+        myerrors.push('需要您的WhatsApp号码');
       }
       if (!this.profile.address) {
-        this.errors.push('请填写地址。');
+        myerrors.push('请填写地址。');
+      }
+
+      this.cartItems.forEach(cartItem => {
+        box = $("#p-"+cartItem.id).find(".input-qty");
+        if(cartItem.quantity > 0){
+          //ok
+          box.removeClass("error");
+          orders.push({id:cartItem.id,quantity:cartItem.quantity});
+        }
+        else {
+          box.addClass("error");
+          myerrors.push('请确保 "'+cartItem.product_title+'" 有填写数量。');
+        }
+      });
+
+      this.errors = myerrors;
+
+      if(myerrors.length == 0){
+        //submit
+        var args = {url:dataURL,data:JSON.stringify({profile:clientProfile,orders:orders}),dataType:"json"};
+        console.log(args);
+        $.post(args, function(d){
+          console.log(d);
+        });
       }
     },
   },
