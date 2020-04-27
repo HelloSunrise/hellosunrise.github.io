@@ -3,33 +3,33 @@
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}audio,canvas,video{display:inline-block}audio:not([controls]){display:none;height:0}[hidden],template{display:none}script{display:none!important}html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{margin:0}a{background:0 0}a:focus{outline:thin dotted}a:active,a:hover{outline:0}h1{font-size:2em;margin:.67em 0}abbr[title]{border-bottom:1px dotted}b,strong{font-weight:700}dfn{font-style:italic}hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}mark{background:#ff0;color:#000}code,kbd,pre,samp{font-family:monospace,serif;font-size:1em}pre{white-space:pre-wrap}q{quotes:"\201C" "\201D" "\2018" "\2019"}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sup{top:-.5em}sub{bottom:-.25em}img{border:0}svg:not(:root){overflow:hidden}figure{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0}button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}
 
 html, body {
-	height: 100%;
-	min-height: 100%;
+    height: 100%;
+    min-height: 100%;
 }
 
 body {
-	font: 100%/1 'PT Serif', serif;
-	background: #fff;
-	color: #333;
+    font: 100%/1 'PT Serif', serif;
+    background: #fff;
+    color: #333;
 }
 
 :active, :focus {
-	outline-style: none;
+    outline-style: none;
 }
 
 a:link {
-	color: #cc8500;
-	text-decoration: none;
+    color: #cc8500;
+    text-decoration: none;
 }
 
 a:hover {
-	color: #cc1400;
-	text-decoration: underline;
+    color: #cc1400;
+    text-decoration: underline;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: normal;
-	font-size: 100%;
+    font-weight: normal;
+    font-size: 100%;
 }
 
 /* position */
@@ -47,41 +47,41 @@ h1, h2, h3, h4, h5, h6 {
 
 /* layout */
 .jumbotron h1{
-	font-size: 3.5rem;
-	font-weight: 300;
-	line-height: 1.2;
+    font-size: 3.5rem;
+    font-weight: 300;
+    line-height: 1.2;
 }
 .button-tab {
-	background: #fff;
-	height: 62px;
-	display: table;
+    background: #fff;
+    height: 62px;
+    display: table;
 }
 .button-tab .container {
-	display: table-cell;
-	vertical-align: middle;
+    display: table-cell;
+    vertical-align: middle;
 }
 .button-tab h2 {
-	font-size: 1.5rem;
-	font-weight: 300;
-	line-height: 1.2;
-	display: none;
+    font-size: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+    display: none;
 }
 .button-tab {
-	margin-bottom: 30px;
-	z-index: 2;
-	left: 0;
-	right: 0;
-	position: relative;
+    margin-bottom: 30px;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    position: relative;
 }
 .content {
-	position: relative;
-	z-index: 1;
+    position: relative;
+    z-index: 1;
 }
 .button-tab .btn {
-	font-size: 2rem;
-	position: absolute;
-	top: 0;
-	right: 0;
+    font-size: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 .sticky {
   position: fixed;
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 72px;
 }
 .button-tab.sticky h2{
-	display: block;
+    display: block;
 }
 #site-info {
     margin-top:2rem;
@@ -108,6 +108,9 @@ h1, h2, h3, h4, h5, h6 {
 input.input-qty {
     width: 30%;
     display: inline-block;
+}
+input.input-qty.error {
+    border: 1.2px solid red;
 }
 
 /* item */
@@ -132,7 +135,7 @@ input.input-qty {
 }
 
 .item-image {
-	width: auto;
+    width: auto;
     max-height: 100%;
 }
 
@@ -195,7 +198,7 @@ input.input-qty {
 }
 
 .item-action {
-	text-align: center;
+    text-align: center;
 }
 
 .icon-cart-text {
@@ -240,17 +243,17 @@ input.input-qty {
 
 /* screen size */
 @media (min-width: 1200px) {
-	.discount-circle, .new-circle {
-	    display: block;
-	    font: 700 18px/24px Gudea,sans-serif;
-	    color: #fff;
-	    padding: 27.5px 0;
-	    position: absolute;
-	    text-transform: uppercase;
-	    z-index: 800;
-	    width: 79px;
-	    height: 79px;
-	    text-align: center;
-	    border-radius: 500px;
-	}
+    .discount-circle, .new-circle {
+        display: block;
+        font: 700 18px/24px Gudea,sans-serif;
+        color: #fff;
+        padding: 27.5px 0;
+        position: absolute;
+        text-transform: uppercase;
+        z-index: 800;
+        width: 79px;
+        height: 79px;
+        text-align: center;
+        border-radius: 500px;
+    }
 }
