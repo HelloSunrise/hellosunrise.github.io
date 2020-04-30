@@ -30,6 +30,9 @@ function saveToStorage(item, value){
     return false;
 }
 
+function showLoading(){$("#loading").show();$("#modal-backdrop").removeClass("d-none");$("body").css("overflow","hidden");}
+function hideLoading(){$("#loading").hide();$("#modal-backdrop").addClass("d-none");$("body").css("overflow","auto");}
+
 var sticky = 0;
 window.onscroll = function() {
   var header = $(".button-tab")[0];
@@ -51,6 +54,7 @@ Vue.filter('formatCurrency', function (value) {
   return formatNumber(value, 2, '.', ',');
 });
 
+var infoURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRerb-WigKsbh1K6uRrr2Q24G50b_HVKgXWLwevDCTsuHQV8hnVgoT6ZatxoKRkWqevR_CK5lKt-XLV/pub?gid=82563433&single=true&output=csv";
 var dataURL = "https://script.google.com/macros/s/AKfycbxM-adOujLUNRf1kdfeVLZMDTAkJtHuHWf6k920waMKjr4Wbmo/exec";
 const vm = new Vue({
   el: '#app',
@@ -65,23 +69,33 @@ const vm = new Vue({
   },
 
   mounted() { // when the Vue app is booted up, this is run automatically.
+    showLoading();
+
+    if(window.location.hash && window.location.hash == "#cart") {
+      this.content = "cart";
+    }
+
     var self = this; // create a closure to access component in the callback below
-    $("#loading").removeClass("d-none");
     self.profile = getFromStorage("profile");
 
+
+    $.get(infoURL,function(data){
+      $("#info").html(data.replace(/\n/g, "<br />").replace(/\"/g, ""));
+    });
+
     $.getJSON(dataURL, function(data) {
-      self.items = data;
+      self.items = data.items;
       self.cartItems = getFromStorage("cartItems");
 
       if (self.cartItems.length > 0) {
         var newCartItems = [];    
 
         self.cartItems.forEach(function(cartItem, index){
-          // data.filter(d => d.id===cartItem.id).forEach((obj) => {
+          // data.items.filter(d => d.id===cartItem.id).forEach((obj) => {
           //   obj["quantity"] = parseInt(cartItem.quantity);
           //   newCartItems.push(obj);
           // });
-          data.filter((obj, index) => {
+          data.items.filter((obj, index) => {
             if(obj.id===cartItem.id){
               obj["quantity"] = parseInt(cartItem.quantity);
               newCartItems.push(obj);
@@ -95,7 +109,7 @@ const vm = new Vue({
         saveToStorage("cartItems", newCartItems);
       }
 
-      $("#loading").hide();
+      hideLoading();
     });
   },
   
@@ -133,6 +147,11 @@ const vm = new Vue({
 
       saveToStorage("cartItems", this.cartItems);
     },
+    clearCart(){
+      this.cartItems = [];
+      this.cartList = [];
+      saveToStorage("cartItems", []);
+    },
     submitOrder(){
       if(this.profile.name && this.profile.whatsapp && this.profile.address){
         var clientProfile = {name:this.profile.name,whatsapp:this.profile.whatsapp,address:this.profile.address};
@@ -169,10 +188,17 @@ const vm = new Vue({
 
       if(myerrors.length == 0){
         //submit
-        var args = {url:dataURL,data:JSON.stringify({profile:clientProfile,orders:orders}),dataType:"json"};
-        console.log(args);
+        var that = this;
+        showLoading();
+        var args = {url:dataURL,data:JSON.stringify({profile:clientProfile,orders:orders}),dataType:"json",crossDomain: true};
         $.post(args, function(d){
-          console.log(d);
+            if(d.status == 1){
+              // that.clearCart();
+            }
+            else{}
+            that.content = "order_messeges";
+            setTimeout(function(){$("#order_messeges").html(d.messages.replace(/\n/g, "<br />"));},"200");
+            hideLoading();
         });
       }
     },
