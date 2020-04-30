@@ -11,17 +11,21 @@
 <body>
 <div class="jumbotron text-center">
   <h1>Hello Sunrise - 测试版本</h1>
-  <p>大家好，由於疫情關係店面沒有營業。目前是每逢星期一、三、五做預訂外送服務。🚚</p>
-  <p>&nbsp;</p>
-  <p>订购满Rm15免费送货</p>
-  <p>如第一次下訂單，记得附上地址哦</p>
-  <p>&nbsp;</p>
-  <p>可以的话请用银行转账</p>
-  <p>Public Bank</p>
-  <p>xxxxxx</p>
-  <p>xxxxxxxxxx</p>
-  <p>&nbsp;</p>
-  <p>如现钱交易 - 请将现钱放进信封或纸袋，请给整数不方便找零钱，谢谢大家的合作</p>
+  <p id="info"></p>
+</div>
+
+<div id="loading" class="modal">
+	<div class="modal-dialog modal-dialog-centered h-100">
+		<div class="modal-content w-50 h-25 mx-auto">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content border-0">
+				  <div class="spinner-border mx-auto" role="status">
+				    <span class="sr-only">Loading...</span>
+				  </div>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 	
 <div id="app">
@@ -31,13 +35,7 @@
 				<h2>Hello Sunrise - 测试版本</h2>
 			</div>
 			<!-- <button id="cart-btn" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Cart ({{cartItems.length}})</button> -->
-			<button id="cart-btn" class="btn btn-primary" @click="changePage('cart')">购物车 ({{cartItems.length}})</button>
-		</div>
-
-		<div id="loading" class="text-center d-none">
-		  <div class="spinner-border" role="status">
-		    <span class="sr-only">Loading...</span>
-		  </div>
+			<a id="cart-btn" class="btn btn-primary" href="#cart" @click="changePage('cart')">购物车 ({{cartItems.length}})</a>
 		</div>
 
 		<div class="container content">
@@ -81,7 +79,7 @@
 			<div class="container" style="text-align: center;">
 				<h2>Hello Sunrise - 测试版本</h2>
 			</div>
-			<button id="home-btn" class="btn btn-primary" @click="changePage('home')">返回主页</button>
+			<a id="home-btn" class="btn btn-primary" href="#home" @click="changePage('home')">返回主页</a>
 		</div>
 
 		<div class="container content">
@@ -113,12 +111,23 @@
 				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length === 0">
 					<div>Cart is empty</div>
 				</div>
+				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < 15">
+					<div></div>
+				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0">
 					<div class="row">
 						<div class="col-sm-4"></div>
 						<div class="col-6 col-sm-4 text-center"><strong>订单总金额</strong></div>
 						<div class="col-6 col-sm-3 text-center"><strong>{{CartTotal | formatCurrency}}</strong></div>
 						<div class="col-sm-1"></div>
+					</div>
+					<div class="row">
+						<div class="col-12"></div>
+					</div>
+					<div class="row" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < 15">
+						<div class="col-sm-4"></div>
+						<div class="col-6 col-sm-4 text-center"><strong></strong></div>
+						<div class="col-6 col-sm-4 text-center"><strong>（订购满RM15有免费送货哦）</strong></div>
 					</div>
 				</div>
 				<div class="col-12">
@@ -141,7 +150,7 @@
 					</div>
 					<div class="row padding-row">
 						<div class="col-sm-2">WhatsApp*</div>
-						<div class="col-sm-10"><input type="number" maxlength="10" v-model="profile.whatsapp" required="" class="form-control"></div>
+						<div class="col-sm-10"><input type="text" maxlength="10" v-model="profile.whatsapp" required="" class="form-control"></div>
 					</div>
 					<div class="row padding-row">
 						<div class="col-sm-2">地址*</div>
@@ -149,21 +158,38 @@
 					</div>
 				</div>
 				<div class="col-12 text-center">
-					<button class="btn btn-primary" @click="submitOrder()">Submit Order</button>
+					<button class="btn btn-primary" @click="submitOrder()">确定下单</button>
 				</div>
 			</div>
 		</div>
 	</div><!-- End Cart -->
+
+	<div v-if="content=='order_messeges'"><!-- Order Messeges -->
+		<div class="button-tab text-right container-fluid">
+			<div class="container" style="text-align: center;">
+				<h2>Hello Sunrise - 测试版本</h2>
+			</div>
+			<a id="home-btn" class="btn btn-primary" href="#home" @click="changePage('home')">返回主页</a>
+		</div>
+
+		<div class="container content">
+			<div class="row">
+				<div id="order_messeges" class="col-12 text-center"></div>
+			</div>
+		</div>
+	</div><!-- End Order Messeges -->
 
 </div>
 
 <footer id="site-info" class="text-center">
 	Copyright &copy; jesslynkoh89
 </footer>
+<div id="modal-backdrop" class="modal-backdrop fade show d-none"></div>
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.10/vue.min.js'></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>
