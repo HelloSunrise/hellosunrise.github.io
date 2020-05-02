@@ -78,9 +78,13 @@ const vm = new Vue({
     var self = this; // create a closure to access component in the callback below
     self.profile = getFromStorage("profile");
 
-
-    $.get(infoURL,function(data){
-      $("#info").html(data.replace(/\n/g, "<br />").replace(/\"/g, ""));
+    $.ajax({
+      url: infoURL,
+      cache: false,
+      dataType: "json",
+      success: function(data){
+        $("#info").html(data.replace(/\n/g, "<br />").replace(/\"/g, ""));
+      }
     });
 
     $.getJSON(dataURL, function(data) {
