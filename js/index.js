@@ -54,8 +54,8 @@ Vue.filter('formatCurrency', function (value) {
   return formatNumber(value, 2, '.', ',');
 });
 
-var infoURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRerb-WigKsbh1K6uRrr2Q24G50b_HVKgXWLwevDCTsuHQV8hnVgoT6ZatxoKRkWqevR_CK5lKt-XLV/pub?gid=82563433&single=true&output=csv";
-var dataURL = "https://script.google.com/macros/s/AKfycbxM-adOujLUNRf1kdfeVLZMDTAkJtHuHWf6k920waMKjr4Wbmo/exec";
+var infoURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vRERZw5jTIC0ZXNQrRIv0p4bMvjWbY2-mcCraia9I7mxCoSFdfxBW4tsbYpCsV4x1dgVJIIXTKSmwc-/pub?gid=82563433&single=true&output=csv";
+var dataURL = "https://script.google.com/macros/s/AKfycbxlHbgU99Kk_e8v2M2S3TRYq0UzRuzCG6WkYOH3/exec";
 const vm = new Vue({
   el: '#app',
   
