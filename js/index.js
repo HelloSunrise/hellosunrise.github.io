@@ -194,6 +194,7 @@ const vm = new Vue({
         $.post(args, function(d){
             if(d.status == 1){
               that.clearCart();
+              window.location.hash = "order";
             }
             else{}
             that.content = "order_messeges";
