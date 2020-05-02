@@ -6,11 +6,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css" media="screen" type="text/css" />
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
 <div class="jumbotron text-center">
-  <h1>Hello Sunrise - 测试版本</h1>
+  <h1>Hello Sunrise</h1>
   <p id="info"></p>
 </div>
 
@@ -32,7 +34,7 @@
 	<div v-if="content=='home'"><!-- Home -->
 		<div id="home-button-tab" class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>Hello Sunrise - 测试版本</h2>
+				<h2>Hello Sunrise</h2>
 			</div>
 			<!-- <button id="cart-btn" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Cart ({{cartItems.length}})</button> -->
 			<a id="cart-btn" class="btn btn-primary" href="#cart" @click="changePage('cart')">购物车 ({{cartItems.length}})</a>
@@ -77,7 +79,7 @@
 	<div v-if="content=='cart'" class="cart"><!-- Cart -->
 		<div class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>Hello Sunrise - 测试版本</h2>
+				<h2>Hello Sunrise</h2>
 			</div>
 			<a id="home-btn" class="btn btn-primary" href="#home" @click="changePage('home')">返回主页</a>
 		</div>
@@ -167,7 +169,7 @@
 	<div v-if="content=='order_messeges'"><!-- Order Messeges -->
 		<div class="button-tab text-right container-fluid">
 			<div class="container" style="text-align: center;">
-				<h2>Hello Sunrise - 测试版本</h2>
+				<h2>Hello Sunrise</h2>
 			</div>
 			<a id="home-btn" class="btn btn-primary" href="#home" @click="changePage('home')">返回主页</a>
 		</div>
@@ -182,7 +184,7 @@
 </div>
 
 <footer id="site-info" class="text-center">
-	Copyright &copy; jesslynkoh89
+	Copyright &copy; HelloSunrise
 </footer>
 <div id="modal-backdrop" class="modal-backdrop fade show d-none"></div>
 
