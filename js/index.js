@@ -193,7 +193,7 @@ const vm = new Vue({
         var args = {url:dataURL,data:JSON.stringify({profile:clientProfile,orders:orders}),dataType:"json",crossDomain: true};
         $.post(args, function(d){
             if(d.status == 1){
-              // that.clearCart();
+              that.clearCart();
             }
             else{}
             that.content = "order_messeges";
