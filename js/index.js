@@ -81,7 +81,6 @@ const vm = new Vue({
     $.ajax({
       url: infoURL,
       cache: false,
-      dataType: "json",
       success: function(data){
         $("#info").html(data.replace(/\n/g, "<br />").replace(/\"/g, ""));
       }
