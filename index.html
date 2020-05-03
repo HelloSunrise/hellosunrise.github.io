@@ -170,6 +170,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 						<div class="col-sm-2">地址*</div>
 						<div class="col-sm-10"><textarea v-model="profile.address" required="" class="form-control"></textarea></div>
 					</div>
+					<div class="row padding-row">
+						<div class="col-sm-2">备注</div>
+						<div class="col-sm-10"><textarea v-model="profile.messages" required="" class="form-control"></textarea></div>
+					</div>
 				</div>
 				<div class="col-12 text-center">
 					<button class="btn btn-primary" @click="submitOrder()">确定下单</button>
