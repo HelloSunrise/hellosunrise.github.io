@@ -173,6 +173,9 @@ const vm = new Vue({
       if (!this.profile.address) {
         myerrors.push('请填写地址。');
       }
+      if (this.profile.messages) {
+        clientProfile.messages = this.profile.messages;
+      }
 
       this.cartItems.forEach(cartItem => {
         box = $("#p-"+cartItem.id).find(".input-qty");
