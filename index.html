@@ -125,7 +125,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length === 0">
 					<div>Cart is empty</div>
 				</div>
-				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < 15">
+				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < freeShippingMinTotal">
 					<div></div>
 				</div>
 				<div class="col-md-12 col-sm-12 col-xs-12" v-show="cartItems.length > 0">
@@ -138,10 +138,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 					<div class="row">
 						<div class="col-12"></div>
 					</div>
-					<div class="row" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < 15">
+					<div class="row" v-show="cartItems.length > 0 && CartTotal > 0 && CartTotal < freeShippingMinTotal">
 						<div class="col-sm-4"></div>
 						<div class="col-6 col-sm-4 text-center"><strong></strong></div>
-						<div class="col-6 col-sm-4 text-center"><strong>（订购满RM15有免费送货哦）</strong></div>
+						<div class="col-6 col-sm-4 text-center"><strong>（订购满RM<span v-text="freeShippingMinTotal"></span>有免费送货哦）</strong></div>
 					</div>
 				</div>
 				<div class="col-12">
