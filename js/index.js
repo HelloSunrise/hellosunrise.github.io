@@ -60,6 +60,7 @@ const vm = new Vue({
   el: '#app',
   
   data: {
+    freeShippingMinTotal : 16,
     items : [],
     cartItems: [],
     cartList: [],
